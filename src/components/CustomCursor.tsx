@@ -4,8 +4,21 @@ import { motion } from 'framer-motion';
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorVariant, setCursorVariant] = useState("default");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile device
+    const checkMobile = () => {
+      setIsMobile(
+        window.innerWidth <= 768 || 
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0
+      );
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const mouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX,
@@ -22,14 +35,21 @@ export default function CustomCursor() {
       }
     };
 
-    window.addEventListener("mousemove", mouseMove);
-    document.addEventListener("mouseover", handleMouseOver);
+    // Only add cursor events if NOT mobile
+    if (!isMobile) {
+      window.addEventListener("mousemove", mouseMove);
+      document.addEventListener("mouseover", handleMouseOver);
+    }
 
     return () => {
       window.removeEventListener("mousemove", mouseMove);
       document.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render cursor on mobile devices
+  if (isMobile) return null;
 
   const variants = {
     default: {
@@ -40,11 +60,10 @@ export default function CustomCursor() {
     hover: {
       x: mousePosition.x - 24,
       y: mousePosition.y - 24,
-      scale: 2,
+      scale: 1.5,
     }
   };
 
-  // Correct spring transition
   const springTransition = {
     type: "spring" as const,
     stiffness: 500,
@@ -76,7 +95,7 @@ export default function CustomCursor() {
           pointerEvents: 'none',
           zIndex: 9999,
           filter: 'blur(0.5px)',
-          mixBlendMode: 'difference' as const,
+          mixBlendMode: 'difference',
         }}
       />
       
@@ -99,7 +118,7 @@ export default function CustomCursor() {
           pointerEvents: 'none',
           zIndex: 9998,
           opacity: 0.7,
-          mixBlendMode: 'difference' as const,
+          mixBlendMode: 'difference',
         }}
       />
       
@@ -130,7 +149,7 @@ export default function CustomCursor() {
             borderRadius: '50%',
             pointerEvents: 'none',
             zIndex: 9997,
-            mixBlendMode: 'difference' as const,
+            mixBlendMode: 'difference',
           }}
         />
       ))}
