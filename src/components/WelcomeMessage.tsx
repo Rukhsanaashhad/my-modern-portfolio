@@ -55,14 +55,14 @@ export default function WelcomeMessage() {
                   />
                 ))}
 
-                {/* PERFECT CIRCLE CROSS BUTTON — TABAAHI */}
+                {/* PERFECT CIRCLE CROSS BUTTON — THEME MATCHED */}
                 <motion.button
                   whileHover={{ scale: 1.2, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={closeWelcome}
-                  className="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/30 flex items-center justify-center text-white hover:bg-white/20 hover:border-cyan-400 transition-all duration-300 shadow-xl group"
+                  className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 backdrop-blur-md border-2 border-cyan-300/80 flex items-center justify-center text-white hover:from-cyan-600 hover:to-purple-700 hover:border-white transition-all duration-300 shadow-2xl z-50 group"
                 >
-                  <X className="w-7 h-7 group-hover:rotate-180 transition-transform duration-500" />
+                  <X className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500" />
                 </motion.button>
 
                 {/* Content */}
@@ -79,7 +79,7 @@ export default function WelcomeMessage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="text-5xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-purple-400 to-pink-400 leading-tight"
+                    className="text-5xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-purple-400 to-pink-400 leading-tight py-2"
                   >
                     Welcome to My World!
                   </motion.h2>
