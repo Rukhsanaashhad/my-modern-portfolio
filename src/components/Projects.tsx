@@ -82,6 +82,14 @@ export default function Projects() {
       live: "https://password-strength-ashhad.streamlit.app",
       github: "https://github.com/Rukhsanaashhad/password-strength",
       image: "/images/strength.png" 
+    },
+    {
+      title: "FIRST BOOK",
+      desc: "AI Driven Development",
+      tech: "PowerShell • TypeScript • CSS",
+      live: "https://rukhsanaashhad.github.io/my-ai-book",
+      github: "https://github.com/Rukhsanaashhad/my-ai-book",
+      image: "/images/bool.png" 
     }
   ];
 
